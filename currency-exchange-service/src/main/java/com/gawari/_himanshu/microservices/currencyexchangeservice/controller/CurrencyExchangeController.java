@@ -2,6 +2,7 @@ package com.gawari._himanshu.microservices.currencyexchangeservice.controller;
 
 import java.math.BigDecimal;
 
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,8 @@ import com.gawari._himanshu.microservices.currencyexchangeservice.repository.Exc
 
 @RestController
 public class CurrencyExchangeController {
+
+	private Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private Environment environment;
@@ -27,6 +30,7 @@ public class CurrencyExchangeController {
 
 		exchangeValue.setPort(Integer.parseInt(environment.getProperty("local.server.port")));
 
+		logger.info("{}", exchangeValue);
 		return exchangeValue;
 	}
 
